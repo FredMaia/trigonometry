@@ -1,0 +1,101 @@
+<html>
+
+<head>
+    <title>
+        Trigonometria
+    </title>
+    <style>
+        body {
+            font-family: Helvetica;
+            background: whitesmoke;
+            background: rgb(165, 249, 125);
+        }
+
+        h1 {
+            text-align: center;
+            color: rgb(60, 60, 60);
+        }
+
+
+        section {
+            background: white;
+            border-radius: 10px;
+            /*raio da borda arredondada*/
+            padding: 15px;
+            /*"altura"*/
+            width: 500px;
+            /*largura*/
+            margin: auto;
+            /*centralizar a section*/
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.363);
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>Calculadora de trigonometria</h1>
+        <section>
+            Digite um ângulo em graus: <input type="number" id="numbertxt">
+            <button onclick="calcular()">Calcular
+            </button>
+
+            <br> <br>
+            <div id="res"></div>
+            <div id="res2"></div>
+        </section>
+
+    </div>
+
+
+
+    <script>
+        function calcular() {
+            var res = document.getElementById("res");
+            var res2 = document.getElementById("res2");
+            var numbertxt = document.getElementById("numbertxt");
+            var number = Number(numbertxt.value)
+            var sen = Math.sin(number * Math.PI / 180)
+            var cos = Math.cos(number * Math.PI / 180)
+            var tg = sen / cos
+            var cotg = 1 / tg
+            var cossec = 1 / sen
+            var sec = 1 / cos
+
+            if (cos.toFixed(15) == 0) {
+                res.innerHTML = `sen: ${sen.toFixed(2)} <br>
+                            cos: ${cos.toFixed(2)} <br>
+                            tg: ∞ <br>
+                            cotg: ${cotg.toFixed(2)} <br>
+                            cossec: ${cossec.toFixed(2)} <br>
+                            sec: ∞`
+            } else if (sen.toFixed(15) == 0) {
+                res.innerHTML = `sen: ${sen.toFixed(2)} <br>
+                            cos: ${cos.toFixed(2)} <br>
+                            tg: ${tg.toFixed(2)} <br>
+                            cotg: ∞ <br>
+                            cossec: ∞ <br>
+                            sec: ${sec.toFixed(2)}`
+            } else {
+                res.innerHTML = `sen: ${sen.toFixed(2)} <br>
+                            cos: ${cos.toFixed(2)} <br>
+                            tg: ${tg.toFixed(2)} <br>
+                            cotg: ${cotg.toFixed(2)} <br>
+                            cossec: ${cossec.toFixed(2)} <br>
+                            sec: ${sec.toFixed(2)}`
+            }
+
+            if (number % 360 > 0 && number % 360 < 90) {
+                res2.innerHTML = "Esse ângulo pertence ao primeiro quadrante"
+            } else if (number % 360 > 90 && number % 360 < 180) {
+                res2.innerHTML = "Esse ângulo pertence ao segundo quadrante"
+            } else if (number % 360 > 180 && number % 360 < 270) {
+                res2.innerHTML = "Esse ângulo pertence ao terceiro quadrante"
+            } else if (number % 360 > 270 && number % 360 < 360) {
+                res2.innerHTML = "Esse ângulo pertence ao quarto quadrante"
+            }
+        }
+    </script>
+</body>
+
+</html>
